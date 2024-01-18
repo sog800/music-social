@@ -25,7 +25,7 @@ const Signup = () => {
     try {
       setLoading(true);
       // Simulate sending a verification email (replace with actual email verification logic)
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 10000));
 
       // Email verified successfully
       setEmailVerified(true);
@@ -33,7 +33,10 @@ const Signup = () => {
         "Verification email sent. Please check your email and click on the verification link."
       );
 
-      // Add your logic to submit the form data here
+      if (emailVerified) {
+        null;
+        // Add your logic to submit the form data here
+      }
       console.log("Form submitted:", formData);
     } catch (error) {
       console.error("Error sending verification email:", error);
