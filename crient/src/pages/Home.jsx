@@ -1,5 +1,6 @@
 import React from "react";
+import App from "../App";
 
 export default function Home() {
-  return <div>Home</div>;
+  return <div></div>;
 }

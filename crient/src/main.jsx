@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import { Login, Profile, Register, ResetPassword } from "./pages";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Login, Profile, Register } from "./pages";
+import Registered from "./utils/Registered.jsx";
 
 const router = createBrowserRouter([
   {
@@ -11,20 +12,17 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "profile",
-    element: <Profile />,
+    element: <Registered />,
+    children: [
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
   },
   {
     path: "register",
     element: <Register />,
-  },
-  {
-    path: "login",
-    element: <Login />,
-  },
-  {
-    path: "reset-password",
-    element: <ResetPassword />,
   },
 ]);
 

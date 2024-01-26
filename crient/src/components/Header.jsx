@@ -6,12 +6,17 @@ import { HiOutlineUser } from "react-icons/hi";
 export default function Header() {
   return (
     <>
-      <SearchBar />
-      <Link to="/profile">
-        <div className=" border border-yellow-600 rounded-full p-2">
-          <HiOutlineUser className=" text-4xl" />
-        </div>
-      </Link>
+      <div className="flex  w-fit gap-16 ">
+        <SearchBar />
+        <Link to="/" className=" text-2xl text-yellow-800">
+          Home
+        </Link>
+        <Link to="/profile">
+          <div className=" border border-yellow-600 rounded-full p-1 w-fit">
+            <HiOutlineUser className=" text-4xl" />
+          </div>
+        </Link>
+      </div>
     </>
   );
 }

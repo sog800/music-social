@@ -12,8 +12,8 @@ export default function App() {
   return (
     <>
       <div className="fixed top-0 w-full bg-white shadow-md">
-        <div className="container mx-auto p-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto p-2">
+          <div className="flex justify-between">
             <h1 className="text-yellow-700 text-lg font-bold">MusicSocial</h1>
             <Header />
           </div>
