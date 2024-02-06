@@ -1,2 +1,4 @@
 package*
 node_*
+app.js
+.env

@@ -1,21 +1,25 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const cors = require("cors");
 
 // requiring roots
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var app = express();
-
 // connecting to the database
 // Set up mongoose connection
 const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-const mongoDB = "";
 
+mongoose.set("strictQuery", false);
+const mongoDB = process.env.MONGODB_LINK;
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
@@ -25,12 +29,12 @@ async function main() {
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 // setting the roots to there pages
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

@@ -1,4 +1,3 @@
-import React from "react";
 import SearchBar from "./SeachBar";
 import { Link } from "react-router-dom";
 import { HiOutlineUser } from "react-icons/hi";

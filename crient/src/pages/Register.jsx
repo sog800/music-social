@@ -1,6 +1,6 @@
-// Signup.js
-import React, { useState } from "react";
+import { useState } from "react";
 import mainImg from "../assets/mainImg.jpg";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,8 @@ const Signup = () => {
     password: "",
     verifyPassword: "",
   });
+
+  const navigate = useNavigate(); // Hook for programmatic navigation
 
   const [emailVerified, setEmailVerified] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -34,13 +36,30 @@ const Signup = () => {
       );
 
       if (emailVerified) {
-        null;
-        // Add your logic to submit the form data here
+        try {
+          const response = await fetch("http://localhost:3000/users/create", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+
+          if (!response.ok) {
+            throw new Error("Something went wrong please try again");
+          }
+          const data = await response.json();
+          if (data) {
+            navigate("/login"); // Redirect to login page after successful account creation
+          }
+        } catch (error) {
+          alert("Failed to create account please try again");
+        }
       }
-      console.log("Form submitted:", formData);
     } catch (error) {
-      console.error("Error sending verification email:", error);
-      alert("Error sending verification email. Please try again later.");
+      alert(
+        "Error sending verification email. Please check your connection, email or try again later."
+      );
     } finally {
       setLoading(false);
     }
@@ -158,6 +177,11 @@ const Signup = () => {
             </div>
           )}
         </form>
+        <div>
+          <Link to="/login" className=" text-2xl text-yellow-800">
+            Login
+          </Link>
+        </div>
       </div>
     </div>
   );

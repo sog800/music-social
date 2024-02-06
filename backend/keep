@@ -1,0 +1,14 @@
+const crypto = require("crypto");
+
+// Generate a random string of characters
+function generateRandomString(length) {
+  return crypto
+    .randomBytes(Math.ceil(length / 2))
+    .toString("hex")
+    .slice(0, length);
+}
+
+// Usage
+const sessionSecretKey = generateRandomString(32); // You can adjust the length as needed
+
+module.exports = generateRandomString;
